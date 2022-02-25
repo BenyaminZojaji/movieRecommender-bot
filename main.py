@@ -1,8 +1,9 @@
 import telebot
+import os
 from recSys import Rec_sys
 
 rs = Rec_sys()
-TOKEN = '5238219897:AAGaJ9uvm_wk2m68dWZnDB0znbIRB7qciC4'
+TOKEN = os.environ['TOKEN']
 bot = telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=['start'])
