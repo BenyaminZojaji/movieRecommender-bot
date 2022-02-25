@@ -15,7 +15,14 @@ def movie(m):
     msg = bot.send_message(m.chat.id, 'give me at least 3 movie and your rating.😍🎬\n\nexample:\nPulp Fiction-5\nAkira-4.5\nJumanji-2\n\nNOTE: make sure to split movie\'s name and rate with - \nNOTE: Our database is incomplete We have movies until 2018')
     bot.register_next_step_handler(msg, mv1)
 def mv1(m):
-    bot.send_message(m.chat.id, f'{rs.recommender_system(m.text)}')
+    if not m.text.startswith("/"):
+	try:
+        	bot.send_message(m.chat.id, f'{rs.recommender_system(m.text)}')
+	except:
+		bot.send_message(m.chat.id, 'Wrong input!')
+    else:
+        bot.reply_to(m, 'I expect your movies-rates not a command. 🤔')
+        bot.send_message(m.chat.id, 'now tell me your command.')
 
 @bot.message_handler(commands=['help'])
 def help_func(message):
